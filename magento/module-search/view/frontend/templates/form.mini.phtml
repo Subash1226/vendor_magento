@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+/** @var $configProvider \Magento\Search\ViewModel\ConfigProvider */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+$configProvider = $block->getData('configProvider');
+?>
+<div class="block block-search">
+    <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form"
+              action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
+            <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span><?= $block->escapeHtml(__('Search')) ?></span>
+                </label>
+                <div class="control">
+                    <input id="search"
+                            <?php if ($configProvider->isSuggestionsAllowed()):?>
+                               data-mage-init='{"quickSearch":{
+                                    "formSelector":"#search_mini_form",
+                                    "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                                    "destinationSelector":"#search_autocomplete",
+                                    "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
+                               }'
+                            <?php endif;?>
+                           type="text"
+                           name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+                           value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Search Medicine')) ?>"
+                           class="input-text"
+                           maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"
+                           aria-expanded="false"/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <div class="loader-spinner" id="loader"></div>
+                    <?= $block->getChildHtml() ?>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn search-btn">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const searchInput = document.getElementById('search');
+    const loader = document.getElementById('loader');
+
+    if (searchInput && loader) {
+        function performSearch() {
+            loader.style.display = 'block';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 5000);
+        }
+
+        searchInput.addEventListener('input', performSearch);
+    } else {
+        console.error("One or more search input elements not found");
+    }
+
+    </script>

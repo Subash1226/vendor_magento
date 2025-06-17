@@ -1,0 +1,37 @@
+# Automatically normalize line endings to LF
+* text=auto
+
+# Force LF endings for source files (important for consistency in Magento)
+*.php       text eol=lf
+*.phtml     text eol=lf
+*.html      text eol=lf
+*.css       text eol=lf
+*.scss      text eol=lf
+*.js        text eol=lf
+*.json      text eol=lf
+*.xml       text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.sh        text eol=lf
+*.md        text eol=lf
+*.txt       text eol=lf
+
+# Binary files - don't modify
+*.jpg       binary
+*.jpeg      binary
+*.png       binary
+*.gif       binary
+*.ico       binary
+*.ttf       binary
+*.woff      binary
+*.woff2     binary
+*.eot       binary
+*.zip       binary
+*.gz        binary
+*.pdf       binary
+*.tar       binary
+*.mp4       binary
+*.mp3       binary
+
+# Prevent CRLF warnings by setting correct line endings explicitly
+

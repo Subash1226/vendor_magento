@@ -1,0 +1,24 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: quoteIsVirtual == 0 -->
+    <tr class="totals shipping excl">
+        <th class="mark" scope="row">
+            <span class="label" data-bind="i18n: title" style="color: #263238;font-family:Source Sans Pro;font-size: 16px;font-weight: 400;"></span>
+            <span class="value" data-bind="text: getShippingMethodTitle()"></span>
+        </th>
+        <td class="amount">
+            <!-- ko if: isCalculated() -->
+            <span style="color: #263238;font-family:Source Sans Pro;font-size: 16px;font-weight: 400;" class="price"
+                  data-bind="text: getValue(), attr: {'data-th': title}"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: isCalculated() -->
+            <span style="color: #263238;font-family:Source Sans Pro;font-size: 16px;font-weight: 400;" class="not-calculated"
+                  data-bind="text: getValue(), attr: {'data-th': title}"></span>
+            <!-- /ko -->
+        </td>
+    </tr>
+<!-- /ko -->

@@ -1,0 +1,117 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<style>
+    .checkout-index-index .checkout-shipping-address {
+        width: 1140px;
+    }
+    .opc-wrapper .shipping-address-item.not-selected-item::after {
+        border-color: #d1e2db !important;
+        border-radius: 8px;
+    }
+    #shipping-method-buttons-container .continue {
+        width: 327px !important;
+        height: 52px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 21px;
+        margin-top: -20px;
+        background: linear-gradient(94deg, #03c777 56.99%, #01a462 99.73%);
+        border: 1px solid #03c777 !important;
+        text-transform: capitalize;
+        margin-right: 25px !important;
+    }
+    .checkout-index-index #checkout-step-shipping {
+        padding: 0 230px;
+    }
+    .opc-wrapper .form-login {
+        max-width: 100%;
+    }
+    .form-login {
+        padding: 10px;
+        background: rgb(241, 249, 254, 1);
+    }
+    .opc-wrapper .form-login label {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    select {
+        font-size: 14px !important;
+    }
+    .opc-wrapper .shipping-address-item {
+	border: 2px solid #d1e2db !important;
+	line-height: 30px;
+	margin:0px !important;
+	padding: 25px 20px 26px 20px;
+	transition: .3s border-color;
+	width: 100%;
+	display: inline-block !important;
+	background: rgb(233, 246, 253);
+	position: relative;
+	vertical-align: top;
+	word-wrap: break-word;
+	font-size: 16px !important;
+	font-family: Source Sans Pro !important;
+}
+    .checkout-index-index #checkout-step-shipping {
+        padding: 0 100px !important;
+    }
+    .table{
+        --bs-table-bg: #F1F9FE !important;
+    }
+</style>
+<div style="width: 100%">
+    <form
+        style="max-width: 100%"
+        class="form form-shipping-address"
+        id="co-shipping-form"
+        data-bind="attr: {'data-hasrequired': $t('* Required Fields')}"
+    >
+        <!-- ko foreach: getRegion('before-fields') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div
+            style="background: rgb(241, 249, 254, 1); padding: 20px"
+            id="shipping-new-address-form"
+            class="fieldset address"
+        >
+            <div
+                class="shipping-delivery"
+                style="width: 100%; text-align: center"
+            >
+                <h1
+                    style="
+                        color: #063851;
+                        font-family: Source Sans Pro;
+                        font-size: 24px;
+                        font-weight: 600;
+                    "
+                >
+                    Add New Delivery Address
+                </h1>
+            </div>
+            <!-- ko foreach: getRegion('additional-fieldsets') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko if: (isCustomerLoggedIn) -->
+            <div class="field choice" data-bind="visible: !isFormInline">
+                <input
+                    type="checkbox"
+                    style="height: 17px !important;"
+                    class="checkbox"
+                    id="shipping-save-in-address-book"
+                    data-bind="checked: saveInAddressBook"
+                />
+                <label class="label" for="shipping-save-in-address-book">
+                    <span
+                        data-bind="i18n: 'Make this my default billing address'"
+                    ></span>
+                </label>
+            </div>
+            <!-- /ko -->
+        </div>
+    </form>
+</div>

@@ -1,0 +1,97 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="shipping-address-item" css="'selected-item': isSelected(), 'not-selected-item': !isSelected()" data-bind="attr: {id: 'address-' + address().customerAddressId}">
+    <div class="ShippingAddressItem">
+        <text style="font-size: 17px;font-weight: 600;" class="Address-name" args="address().prefix"></text>
+        <span class="Address-name" text="address().firstname"></span>
+        <text class="Address-name" args="address().middlename"></text>
+        <span class="Address-name" text="address().lastname"></span>,
+        <text args="address().suffix"></text>
+        <if args="address().company">
+            <text args="address().company"></text>,
+        </if>
+        <text args="_.values(_.compact(address().street)).join(', ')"></text>
+        <text args="address().city "></text>, <br>
+        <span text="address().region"></span>
+        <text args="address().postcode"></text>,
+        <text args="getCountryName(address().countryId)"></text>
+        <span>Ph: </span>
+        <span class="mob-address" if="address().telephone" onclick="return false;" text="address().telephone"></span>
+        <if args="address().vatId">
+            VAT: <text args="address().vatId"></text>
+        </if>
+        <each args="data: address().customAttributes, as: 'element'">
+            <text args="$parent.getCustomAttributeLabel(element)"></text>
+            <br>
+        </each>
+
+        <button type="button" class="action edit-address-link" data-bind="click: editAddress">
+            <span translate="'Edit Address'"></span>
+        </button>
+        | &nbsp;
+        <a href="#" data-bind="click: deleteAddress.bind($data, address().customerAddressId)" class="red-link">Delete Address</a>
+        <p style="float: right;" id="SelectAddress" data-bind="click: selectAddress"></p>
+
+    </div>
+</div>
+<style>
+    .mob-address{
+        text-decoration: none !important;
+        font-weight: 400 !important;
+        color: #000 !important;
+    }
+    .red-link{
+        text-decoration: none !important;
+
+    }
+    .opc-wrapper .shipping-address-item.selected-item::after {
+background: #000 !important;
+border-radius: 18px !important;
+}
+    .shipping-address-item{
+        font-size: 16px !important;
+        font-family: Source Sans Pro !important;
+        font-size: 400;
+        border-radius: 0px !important;
+    }
+    .shipping-address-items{
+        border: 1px solid #cacaca;
+border-radius: 8px !important;
+    }
+    #SelectAddress {
+font-family: Source Sans Pro;
+color: #227ed1;
+font-size: 16px;
+display: inline-flex;
+font-weight: 600;
+cursor: pointer;
+padding: 8px;
+border: 2px solid #000;
+border-radius: 10px;
+margin-top: -25px;
+margin-right: -9px;
+}
+.Address-name{
+font-size: 16px !important;
+font-weight: 600 !important;
+font-size: 17px !important;
+}
+#SelectAddress.selected {
+background-color: #227ed1;
+color: #fff;
+}
+.opc-wrapper .shipping-address-item.selected-item {
+border-color: #d8d8d8 !important;
+border-radius: 1px !important;
+}
+.opc-wrapper .shipping-address-item.not-selected-item::after {
+border-color: #d1e2db !important;
+border-radius: 1px !important;
+}
+</style>
+
+

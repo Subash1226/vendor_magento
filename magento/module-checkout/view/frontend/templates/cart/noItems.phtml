@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**  @var $block \Magento\Checkout\Block\Cart */
+?>
+<div class="cart-empty">
+    <?= $block->getChildHtml('checkout_cart_empty_widget') ?>
+<div class="container">
+    <div class="row">
+        <div style="width: 100%;text-align:center" class="cartEmpty">
+        <img style="height:340px !important;object-fit: cover;" src="<?= $block->getViewFileUrl('RLTSquare_AjaxShoppingCartUpdate::images/Empty.png'); ?>" alt="Empty Cart">
+        <p style="padding:10px 0;color: #063851;font-family:Source Sans Pro;font-size:22px;font-style:normal;font-weight: 400;" class="emptyCartText">Your Cart is Empty, Add product now.</p>
+       <a style="text-decoration: none;" href="http://local.medizinhub.com"><button style="border-radius: 8px;background: linear-gradient(94deg, #03C777 56.99%, #01A462 99.73%);color:#fff;font-family: Source Sans Pro !important;
+         padding: 12px 24px;font-size: 16px;font-style: normal;font-weight: 600;" class="btn btn-success emptycartbtn">Continue Shopping</button></a>
+        </div>
+    </div>
+</div>
+    <p style="display: none;"><?= $block->escapeHtml(__('You have no items in your cart.')) ?></p>
+    <p style="display: none;"><?= $block->escapeHtml(
+        __(
+            'Click <a href="%1">here</a> to continue shopping.',
+            $block->escapeUrl($block->getContinueShoppingUrl())
+        ),
+        ['a']
+    ) ?>
+    </p>
+    <?= $block->getChildHtml('shopping.cart.table.after') ?>
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Checkout/js/empty-cart": {}
+    }
+}
+</script>

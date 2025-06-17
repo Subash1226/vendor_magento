@@ -1,0 +1,31 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<tr class="grand totals">
+    <td class="mark" scope="row">
+        <strong data-bind="i18n: title" style="color: #00739B;
+        font-family: Source Sans Pro;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px; /* 120% */
+        letter-spacing: 0.2px;"></strong>
+    </td>
+    <td class="amount" data-bind="attr: {'data-th': $t(title)}">
+        <strong><span style="color: #00739B;
+            font-family: Source Sans Pro;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px; /* 120% */
+            letter-spacing: 0.2px;" class="price" data-bind="text: getValue()"></span></strong>
+        <!-- ko foreach: elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </td>
+</tr>
+<!-- /ko -->

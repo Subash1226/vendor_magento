@@ -1,0 +1,20 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<ul class="opc-progress-bar">
+    <!-- ko foreach: { data: steps().sort(sortItems), as: 'item' } -->
+    <li class="opc-progress-bar-item" data-bind="css: {
+        '_active': item.isVisible(),
+        '_complete': $parent.isProcessed(item),
+        'checkout-steps': item.stepCode === $parent.stepCode,
+        'item-title': true,
+        [item.title.replace(/\s+/g, '-').toLowerCase()]: true
+    }">
+            <span data-bind="i18n: item.title, click: $parent.navigateTo"></span>
+        </li>
+    <!-- /ko -->
+</ul>
+
